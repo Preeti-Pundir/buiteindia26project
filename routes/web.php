@@ -2,13 +2,16 @@
 
 use App\Contracts\ProductContract;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{  AdminPageController,StorePageController,AuthContoller,BrandController, BrandsController,ImageController, ImageGalleryController, plancontroller, ProductController,ProductImageController, StoreController, SubscriptionController, testcontroller, TestingHelperController, UploadController};
+use App\Http\Controllers\{  AdminPageController,StorePageController,AuthContoller,BrandController, BrandsController,ImageController, ImageGalleryController, OrderController, plancontroller, PlansController, ProductController,ProductImageController, StoreController, SubscriptionController, testcontroller, TestingHelperController};
 use app\http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use app\Http\Controllers\CustomerController;
-use app\http\Controllers\checkcontroller;
+use App\Http\Controllers\CustomerController;
+use App\http\Controllers\checkcontroller;
+use App\Http\Controllers\UploadController;
+
+
 
 
 
@@ -22,6 +25,8 @@ use app\http\Controllers\checkcontroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
+route::get('add',[CustomerController::class,'index']);
+       
 
 
         Route::get('/',[AuthContoller::class,"login"])->name('login')->middleware('authcheck');
@@ -74,33 +79,48 @@ Route::prefix('store')->group(function () {
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
         Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::post('/delete/{id}', [ProductController::class, 'destroy'])->name('admin.product.delete');
-          route::resource('plan',plancontroller::class);
+        //Route::get('/add-t', [CustomerController::class, 'index']);
+        // Route::get('/add',[CustomerController::class,'index']);
+          //route::resource('admin/plan/',plancontroller::class);
           
-          route::post('subscription',[SubscriptionController::class,'create'])->name('subscription.create');
-        // Route::post('/subscription', SubscriptionController::class,'create')->name('subscription.create');
-            Route::get('brands/', BrandController::class,'index')->name('admin.brands.index');
-            Route::get('brands/create', BrandController::class,'create')->name('admin.brands.create');
-            Route::post('brands/show', BrandController::class,'show')->name('admin.brands.show');
-            Route::post('brands/store', BrandController::class,'store')->name('admin.brands.store');
-            Route::get('brands/{id}/edit', BrandController::class,'edit')->name('admin.brands.edit');
-            Route::post('brands/update', BrandController::class,'update')->name('admin.brands.update');
-            Route::get('brands/{id}/delete', BrandController::class,'delete')->name('admin.brands.delete');
+         
+            Route::get('brands/',[BrandController::class,'index'])->name('admin.brands.index');
+            Route::get('brands/create',[BrandController::class,'create'])->name('admin.brands.create');
+            Route::post('brands/show',[BrandController::class,'show'])->name('admin.brands.show');
+            Route::post('brands/store',[BrandController::class,'store'])->name('admin.brands.store');
+            Route::get('brands/{id}/edit',[BrandController::class,'edit'])->name('admin.brands.edit');
+            Route::post('brands/update',[BrandController::class,'update'])->name('admin.brands.update');
+            Route::get('brands/{id}/delete',[BrandController::class,'delete'])->name('admin.brands.delete');
 
-            route::get('add',[CustomerController::class,'index']);
-            //route::get('add',[CustomerController::class,'index'])->name('customer>index');
+            route::get('add',[CustomerController::class,'index'])->name('customer>index');
             route::post('save',[CustomerController::class,'save'])->name('customer.save');
-        
+
+            //plan and their subscription
+            route::get('plan/index',[PlansController::class,'index'])->name('admin.plans.index');
+           // route::get('plan/plan',[PlansController::class,'show'])->nae('admin.plans.show');
+            // route::get('plan/show/{id}',[PlansController::class,'show'])->name('admin.plan.show');
+            // route::get('plan/{id}/edit',[PlansController::class,'edit'])->name('admin.plan.edit');
+            // route::get('plan/update',[PlansController::class,'update'])->name('admin.plan.update');
+            // route::get('plan/{}/delete',[PlansController::class,'delete'])->name('admin.plan.delete');
+            //route::post('subscription',[SubscriptionController::class,'create'])->name('subscription.create');
+            //Route::post('/subscription', SubscriptionController::class,'create')->name('subscription.create');
+
         
 
     });
 });
 
-        Route::get('/multiuploads', App\Http\Controllers\UploadController::class,'uploadForm');
-        Route::post('/multiuploads', UploadController::class,'uploadSubmit');
+
+            // route::get('add',[CustomerController::class,'index']);
+            // route::post('save',[CustomerController::class,'save'])->name('customer.save');
+       
+
+         Route::get('/multiuploads', [UploadController::class,'uploadForm']);
+         Route::post('/multiuploads', [UploadController::class,'uploadSubmit']);
 
         route::get('check',[checkcontroller::class,'index']);
 
-        route::get('test2',[testcontroller::class,'index'])->name('customer.index');
+         route::get('test2',[testcontroller::class,'index'])->name('customer.index');
 
  
         route::get('testtest',[TestingHelperController::class,'index']);
@@ -116,25 +136,14 @@ Route::prefix('store')->group(function () {
 //Route::post('/subscription', SubscriptionController::class,'create')->name('subscription.create');
 
 
-         Route::get('image-upload',App\Http\Controllers\ImageController::class,'imageUpload');
-         Route::post('image-upload',App\Http\Controllers\ImageController::class,'imageUploadPost');
+         Route::get('image-upload',[App\Http\Controllers\ImageController::class,'imageUpload']);
+         Route::post('image-upload',[App\Http\Controllers\ImageController::class,'imageUploadPost']);
          
          Route::post('images/upload', [ProductImageController::class,'upload'])->name('admin.products.images.upload');
          Route::get('images/{id}/delete', [ProductImageController::class,'delete'])->name('admin.products.images.delete');
 
         
-        //  Route::group(['prefix'  =>   'brands'], function() {
-
-        //     Route::get('brands/', BrandController::class,'index')->name('admin.brands.index');
-        //     Route::get('brands/create', BrandController::class,'cr eate')->name('admin.brands.create');
-        //     Route::post('brands/show/{id}', BrandController::class,'show')->name('admin.brands.show');
-            
-        //     Route::post('brands/store', BrandController::class,'store')->name('admin.brands.store');
-        //     Route::get('brands/{id}/edit', BrandController::class,'edit')->name('admin.brands.edit');
-        //     Route::post('brands/update', BrandController::class,'update')->name('admin.brands.update');
-        //     Route::get('brands/{id}/delete', BrandController::class,'delete')->name('admin.brands.delete');
         
-        // });
         
         Route::group(['prefix'  =>   'stores'], function() {
                     Route::get('index',[StoreController::class,'index'])->name('admin.stores.index');
@@ -161,4 +170,12 @@ Route::prefix('store')->group(function () {
     //             });
     //         }); 
       
+
+
+
+    //order module
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/index',[OrderController::class,'index'] )->name('admin.orders.index');
+        Route::get('/{order}/show', [OrderController::class,'show'])->name('admin.orders.show');
+     });
         

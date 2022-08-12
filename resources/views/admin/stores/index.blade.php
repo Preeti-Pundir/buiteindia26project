@@ -33,7 +33,7 @@
             <tr>
                <td>{{$store->id}}</td>
                 <td>{{ $store->name }}</td>
-                <td>{{ $store->store_id }}</td>
+                <td>{{ $store->store_Code }}</td>
                 <td>{{ $store->address }}</td>
                 <td>{{ $store->city }}</td>
                 {{-- <td>{{ $store->disc}}</td> --}}

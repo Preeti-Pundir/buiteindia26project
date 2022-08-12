@@ -6,8 +6,8 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
                     <li>
-                        {{-- <a class="app-menu__item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
-                            --}}
+                        <a class="app-menu__item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
+                           
                             
                             <i class="app-menu__icon fa fa-briefcase"></i>
                             <span class="app-menu__label">Brands</span>
@@ -26,12 +26,27 @@
                         </a>
                     </li>
                     <li>
-                          {{-- <a class="app-menu__item {{ Route::currentRouteName() == 'customer.index' ? 'active' : '' }}" href="{{ route('customer.index') }}">
-                             --}}
+                          <a class="app-menu__item {{ Route::currentRouteName() == 'customer.index' ? 'active' : '' }}" href="{{ route('customer.index') }}">
+                            
                             <i class="app-menu__icon fa fa-briefcase"></i> 
                             <span class="app-menu__label">customer </span>
                         </a>
                     </li>
+
+                    {{-- <li>
+                        <a class="app-menu__item {{ Route::currentRouteName() == 'admin.plan.index' ? 'active' : '' }}" href="{{ route('admin.plan.index') }}">
+                            <i class="app-menu__icon fa fa-briefcase"></i> 
+                            <span class="app-menu__label">Payment</span>
+                        </a>
+                    </li> --}}
+
+
+                    {{-- <li>
+                        <a class="app-menu__item {{ Route::currentRouteName() == 'admin.orders.index' ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
+                            <i class="app-menu__icon fa fa-bar-chart"></i>
+                            <span class="app-menu__label">Orders</span>
+                        </a>
+                    </li> --}}
                    
 
                 <div class="card-body">

@@ -12,16 +12,19 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="form-group">
-                 
-                    <form action="{{route(customer.save)}}" method='post'>
+                 <form>
+                    {{-- <form action="{{route(customer.save)}}" method='post'> 
+                        
                         @csrf
                        <h1>Add new customer</h1>
                        <div>
                         @php
                            $email = user_email();
                         @endphp
-                   
-                           {{ $email }}
+                   `
+                           {{ $email }}php  --}}
+                          
+                           
                     </div>
                         <div class="form-group">
                             <label for="customer">Customer</label>

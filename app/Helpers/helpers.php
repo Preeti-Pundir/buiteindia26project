@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class helper
 {
     public static function test(){
-         echo 'hello helper';
+        return view('customer.index'); 
+        //echo 'hello helper';
     }
 
     //public static function IDGenerator($model, $trow, $length=4, $prefix)

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use app\payment;
+use App\Models\payment;
 use App\Http\Requests\PayemntRequest;
 use App\Models\Payment as ModelsPayment;
 use Illuminate\Support\Facades\Session;

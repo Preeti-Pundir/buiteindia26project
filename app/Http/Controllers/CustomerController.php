@@ -12,9 +12,11 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     public function index(){
+ 
         $customer = Customer::all();
         //$userEmail = user_email();
         return view('customer.index',compact('customer'));
+       
     }
 
     public function save(request $request){

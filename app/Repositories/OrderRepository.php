@@ -2,13 +2,15 @@
 
 namespace App\Repositories;
 
-use Cart;
+//use Cart;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderItem;
+use App\Models\cart;
 use App\Contracts\OrderContract;
 use App\Http\Controllers\CartData\CartDataController;
 use Illuminate\Support\Facades\Auth;
+
 class OrderRepository extends BaseRepository implements OrderContract
 {
     public function __construct(Order $model)
@@ -121,4 +123,6 @@ class OrderRepository extends BaseRepository implements OrderContract
 
         return $order;
     }
+   
 }
+
