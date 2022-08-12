@@ -1,12 +1,12 @@
-@extends('admin.app')
-@section('title') {{ $pageTitle }} @endsection
-@section('content')
+{{-- @extends('admin.app') 
+ @section('title') {{ $pageTitle }} @endsection 
+ @section('content') 
     <div class="app-title">
         <div>
             <h1><i class="fa fa-bar-chart"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
@@ -27,7 +27,8 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td>{{ $order->order_number }}</td>
-                                <td>{{ $order->user->fullName }}</td>
+                                <td>{{$order->Placed_By}}</td>
+                                {{-- <td>{{ $order->user->fullName }}</td> --}}
                                 <td class="text-center">{{ config('settings.currency_symbol') }}{{ $order->grand_total }}</td>
                                 <td class="text-center">{{ $order->item_count }}</td>
                                 <td class="text-center">

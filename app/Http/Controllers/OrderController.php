@@ -18,19 +18,19 @@ class OrderController extends Controller
 
     public function index()
         {
-            $orders = $this->orderRepository->listOrders();
-            $this->setPageTitle('Orders', 'List of all orders');
+            //$orders = $this->orderRepository->listOrders();
+            //$this->setPageTitle('Orders', 'List of all orders');
            // $orders = Order::all();
-           // $orders =  order::all();
+            $orders =  order::all();
            //dd('asdfadf');
             return view('admin.orders.index', compact('orders'));
         }
 
     public function show($orderNumber)
         {
-            $order = $this->orderRepository->findOrderByNumber($orderNumber);
+            //$order = $this->orderRepository->findOrderByNumber($orderNumber);
 
-            $this->setPageTitle('Order Details', $orderNumber);
+            //$this->setPageTitle('Order Details', $orderNumber);
             return view('admin.orders.show', compact('order'));
         }
 }
