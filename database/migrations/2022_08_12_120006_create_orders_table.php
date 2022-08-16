@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('order_number');
             $table->string('placed_by');
+            
+          // $table->foreign('user_id')->references('id')->on('users');
             $table->integer('total_amout');
             $table->integer('items_qty');
             $table->enum('Payment_status', ['processing', 'incomplete', 'completed'])->default('processing');

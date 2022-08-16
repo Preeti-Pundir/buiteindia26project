@@ -3,13 +3,14 @@
 use App\Contracts\ProductContract;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{  AdminPageController,StorePageController,AuthContoller,BrandController, BrandsController,ImageController, ImageGalleryController, OrderController, plancontroller, PlansController, ProductController,ProductImageController, StoreController, SubscriptionController, testcontroller, TestingHelperController};
-use app\http\Controllers\HomeController;
+//use app\http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\CustomerController;
 use App\http\Controllers\checkcontroller;
 use App\Http\Controllers\UploadController;
+Use App\Http\Controllers\HomeController;
 
 
 
@@ -79,6 +80,10 @@ Route::prefix('store')->group(function () {
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
         Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::post('/delete/{id}', [ProductController::class, 'destroy'])->name('admin.product.delete');
+        Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+        Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+        Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
+        Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
         //Route::get('/add-t', [CustomerController::class, 'index']);
         // Route::get('/add',[CustomerController::class,'index']);
           //route::resource('admin/plan/',plancontroller::class);
@@ -177,5 +182,6 @@ Route::prefix('store')->group(function () {
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/index',[OrderController::class,'index'] )->name('admin.orders.index');
         Route::get('/{order}/show', [OrderController::class,'show'])->name('admin.orders.show');
-     });
+        route::get('send',[HomeController::class,'sendNotification']);
+    });
         

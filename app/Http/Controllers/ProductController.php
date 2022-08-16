@@ -88,6 +88,32 @@ class ProductController extends Controller
        // return response(["product"=>product::all()],200);
     }
 
+    public function cart()
+    {
+        return view('cart');
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+          
+        $cart = session()->get('cart', []);
+  
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        }
+          
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -180,6 +206,32 @@ class ProductController extends Controller
         // }
         // return Redirect()->back()->with('success','Product Updated Successfully');
       //  return $this->responseRedirect('admin.products.index', 'Product updated successfully' ,'success',false, false);
+
+      if($request->id && $request->quantity){
+        $cart = session()->get('cart');
+        $cart[$request->id]["quantity"] = $request->quantity;
+        session()->put('cart', $cart);
+        session()->flash('success', 'Cart updated successfully');
+            }
+        
+
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
     }
 
     /**

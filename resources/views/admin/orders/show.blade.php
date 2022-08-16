@@ -1,4 +1,7 @@
-@extends('admin.app')
+@extends('adminstore.app')
+@section('title'){{$pageTitle}} @endsection
+
+{{-- @extends('admins.app')
 @section('title') {{ $pageTitle }} @endsection
 @section('content')
     <div class="app-title">
@@ -6,7 +9,7 @@
             <h1><i class="fa fa-bar-chart"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
@@ -21,7 +24,7 @@
                     </div>
                     <div class="row invoice-info">
                         <div class="col-4">Placed By
-                            <address><strong>{{ $order->user->fullName }}</strong><br>Email: {{ $order->user->email }}</address>
+                            <address><strong>{{ $order->user->name }}</strong><br>Email: {{ $order->user->email }}</address>
                         </div>
                         <div class="col-4">Ship To
                             <address><strong>{{ $order->first_name }} {{ $order->last_name }}</strong><br>{{ $order->address }}<br>{{ $order->city }}, {{ $order->country }} {{ $order->post_code }}<br>{{ $order->phone_number }}<br></address>
